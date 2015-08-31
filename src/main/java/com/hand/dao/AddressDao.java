@@ -1,15 +1,12 @@
 package com.hand.dao;
 
-import java.util.Iterator;
-import java.util.List;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hand.javabean.Address;
-
+@Transactional  
 public class AddressDao {
 	private SessionFactory factory;
 	public void setFactory(SessionFactory factory) {
@@ -17,16 +14,13 @@ public class AddressDao {
 	}
 	
 	//根据地址ID查询地址是否存在
+	@Transactional(readOnly=true)
 	public boolean isAddress(int addressId){
 		Session session = factory.openSession();
-		Transaction tx = null;
 		Address address = null;
 		try{
-			tx = session.beginTransaction();
 			address = session.get(Address.class, addressId);
-			tx.commit();
 		}catch(HibernateException e){
-			if(tx != null)tx.rollback();
 			e.printStackTrace();
 		}finally {
 			session.close();
@@ -36,17 +30,14 @@ public class AddressDao {
 	}
 	
 	//根据地址ID查询地址名称
+	@Transactional(readOnly=true)
 	public String getAddressName(int addressId){
 		Session session = factory.openSession();
-		Transaction tx = null;
 		String addressName = null;
 		try{
-			tx = session.beginTransaction();
 			Address addr = session.get(Address.class, addressId);
 			addressName = addr.getAddress();
-			tx.commit();
 		}catch(HibernateException e){
-			if(tx != null)tx.rollback();
 			e.printStackTrace();
 			return addressName;
 		}finally {

@@ -4,6 +4,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hand.interceptor.CustomerInterceptor;
 import com.hand.javabean.Customer;
@@ -15,16 +17,13 @@ public class CustomerDao {
 	}
 	
 	//添加客户
+	@Transactional(propagation=Propagation.REQUIRED,rollbackForClassName="Exception")
 	public Integer addCustomer(Customer customer){
 		Session session = factory.withOptions().interceptor(new CustomerInterceptor()).openSession();
-		Transaction tx = null;
 		Integer cusID = -1;
 		try{
-			tx = session.beginTransaction();
 			cusID = (Integer) session.save(customer);
-			tx.commit();
 		}catch(HibernateException e){
-			if(tx != null)tx.rollback();
 			e.printStackTrace();
 			return cusID;
 		}finally {
@@ -34,16 +33,13 @@ public class CustomerDao {
 	}
 	
 	//根据地址ID查询客户是否存在
+	@Transactional(readOnly=true)
 	public boolean isCustomer(int cusId){
 		Session session = factory.openSession();
-		Transaction tx = null;
 		Customer customer = null;
 		try{
-			tx = session.beginTransaction();
 			customer = session.get(Customer.class, cusId);
-			tx.commit();
 		}catch(HibernateException e){
-			if(tx != null)tx.rollback();
 			e.printStackTrace();
 		}finally {
 			session.close();
@@ -56,6 +52,7 @@ public class CustomerDao {
 	}
 	
 	//根据客户ID删除
+	@Transactional(propagation=Propagation.REQUIRED,rollbackForClassName="Exception")
 	public boolean deleteCustomer(int cusId){
 		Session session = factory.openSession();
 		Transaction tx = null;
@@ -66,7 +63,7 @@ public class CustomerDao {
 			session.update(customer);
 			tx.commit();
 		}catch(HibernateException e){
-			if(tx != null)tx.rollback();
+			if(session != null)tx.rollback();
 			e.printStackTrace();
 			return false;
 		}finally {
@@ -76,16 +73,13 @@ public class CustomerDao {
 	}
 	
 	//根据客户ID查询客户信息
+	@Transactional(readOnly=true)
 	public Customer getCustomers(int cusId){
 		Session session = factory.openSession();
-		Transaction tx = null;
 		Customer cus = null;
 		try{
-			tx = session.beginTransaction();
 			cus = session.get(Customer.class, cusId);
-			tx.commit();
 		}catch(HibernateException e){
-			if(tx != null)tx.rollback();
 			e.printStackTrace();
 			return cus;
 		}finally {
