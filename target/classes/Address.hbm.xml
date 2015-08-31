@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+ <hibernate-mapping package="com.hand.javabean">
+ 	<class name="Address" table="address">
+ 		<meta attribute="class-description">
+ 			This class contains the address detail.
+ 		</meta>
+ 		<id name="addressId" type="int" column="address_id">
+ 			<generator class="native"/>
+ 		</id>
+ 		<property name="address" column="address" type="string"/>
+ 		<property name="address2" column="address2" type="string"/>
+ 		<property name="district" column="district" type="string" />
+ 		<property name="cityId" column="city_id" type="int"/>
+ 		<property name="postalCode" column="postal_code" type="string"/>
+ 		<property name="phone" column="phone" type="string"/>
+ 	</class>
+ </hibernate-mapping>

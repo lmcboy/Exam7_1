@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+ <hibernate-mapping package="com.hand.javabean">
+ 	<class name="City" table="city">
+ 		<meta attribute="class-description">
+ 			This class contains the city detail.
+ 		</meta>
+ 		<id name="cityId" type="int" column="city_id">
+ 			<generator class="native"/>
+ 		</id>
+ 		<property name="city" column="city" type="string"/>
+ 		<property name="countryId" column="country_id" type="int"/>
+ 	</class>
+ </hibernate-mapping>

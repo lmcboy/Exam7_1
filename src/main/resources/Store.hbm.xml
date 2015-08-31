@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+ <hibernate-mapping package="com.hand.javabean">
+ 	<class name="Store" table="store">
+ 		<meta attribute="class-description">
+ 			This class contains the store detail.
+ 		</meta>
+ 		<id name="storeId" type="int" column="store_id">
+ 			<generator class="native"/>
+ 		</id>
+ 		<property name="managerStaffId" column="manager_staff_id" type="int"/>
+ 		<property name="addressId" column="address_id" type="int"/>
+ 	</class>
+ </hibernate-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+ <hibernate-mapping package="com.hand.javabean">
+ 	<class name="Country" table="country">
+ 		<meta attribute="class-description">
+ 			This class contains the country detail.
+ 		</meta>
+ 		<id name="countryId" type="int" column="country_id">
+ 			<generator class="native"/>
+ 		</id>
+ 		<property name="country" column="country" type="string"/>
+ 	</class>
+ </hibernate-mapping>
