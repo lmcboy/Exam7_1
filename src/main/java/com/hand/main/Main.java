@@ -31,7 +31,6 @@ public class Main {
 				System.out.println("你输入的Address ID 不存在，请重新输入:");
 			}
 		}
-		System.out.println("Before Save");
 		cus.setStoreId(1);
 		cus.setFirstName(firstName);
 		cus.setLastName(lastName);

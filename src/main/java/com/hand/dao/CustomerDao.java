@@ -1,8 +1,5 @@
 package com.hand.dao;
 
-import java.util.Iterator;
-import java.util.List;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,7 +16,7 @@ public class CustomerDao {
 	
 	//添加客户
 	public Integer addCustomer(Customer customer){
-		Session session = factory.openSession();
+		Session session = factory.withOptions().interceptor(new CustomerInterceptor()).openSession();
 		Transaction tx = null;
 		Integer cusID = -1;
 		try{
