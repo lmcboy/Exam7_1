@@ -4,6 +4,9 @@ public class Store {
 	private int storeId;
 	private int managerStaffId;
 	private int addressId;
+	private Customer customer;
+	private Address address;
+	
 	public Store(){}
 	public int getStoreId() {
 		return storeId;
@@ -23,6 +26,18 @@ public class Store {
 	}
 	public void setAddressId(int addressId) {
 		this.addressId = addressId;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 }

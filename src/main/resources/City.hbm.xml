@@ -12,5 +12,10 @@
  		</id>
  		<property name="city" column="city" type="string"/>
  		<property name="countryId" column="country_id" type="int"/>
+ 		
+ 		<many-to-one name="country" class="Country" update="false"
+        	insert="false" fetch="select">
+            <column name="country_id"/>
+        </many-to-one>
  	</class>
  </hibernate-mapping>

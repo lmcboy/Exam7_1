@@ -1,5 +1,8 @@
 package com.hand.javabean;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Address {
 	private int addressId;
 	private String address;
@@ -8,6 +11,8 @@ public class Address {
 	private int cityId;
 	private String postalCode;
 	private String phone;
+	private Set<Customer> customer = new HashSet<Customer>(0);
+	private Set<Store> store = new HashSet<Store>(0);
 	public Address(){}
 	public int getAddressId() {
 		return addressId;
@@ -50,6 +55,18 @@ public class Address {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public Set<Customer> getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Set<Customer> customer) {
+		this.customer = customer;
+	}
+	public Set<Store> getStore() {
+		return store;
+	}
+	public void setStore(Set<Store> store) {
+		this.store = store;
 	}
 	
 }

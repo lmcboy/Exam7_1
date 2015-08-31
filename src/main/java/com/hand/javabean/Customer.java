@@ -1,6 +1,8 @@
 package com.hand.javabean;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Customer {
 	private int customerId;
@@ -11,6 +13,8 @@ public class Customer {
 	private int addressId;
 	private String createDate;
 	private int active;
+	private Set<Store> store = new HashSet<Store>(0);
+	private Address address;
 	
 	public Customer(){}
 
@@ -76,6 +80,22 @@ public class Customer {
 
 	public void setActive(int active) {
 		this.active = active;
+	}
+
+	public Set<Store> getStore() {
+		return store;
+	}
+
+	public void setStore(Set<Store> store) {
+		this.store = store;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 	

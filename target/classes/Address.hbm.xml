@@ -16,5 +16,13 @@
  		<property name="cityId" column="city_id" type="int"/>
  		<property name="postalCode" column="postal_code" type="string"/>
  		<property name="phone" column="phone" type="string"/>
+ 		<set name="customer" inverse="true" lazy="false" >
+             <key><column name="address_id"/></key>
+             <one-to-many class="Customer"/>
+        </set>
+        <set name="store" inverse="true" lazy="false" >
+             <key><column name="address_id"/></key>
+             <one-to-many class="Store"/>
+        </set>
  	</class>
  </hibernate-mapping>
